@@ -36,7 +36,7 @@ pipeline {
                         ansible-playbook \
                             -e vault_username="$NETWORK_USERNAME" \
                             -e vault_password="$NETWORK_PASSWORD" \
-                            playbooks/validate.yml
+                            validate.yml
                     '''
                 }
             }
@@ -55,7 +55,7 @@ pipeline {
                         ansible-playbook \
                             -e vault_username="$NETWORK_USERNAME" \
                             -e vault_password="$NETWORK_PASSWORD" \
-                            playbooks/backup.yml
+                            backup.yml
                     '''
                 }
             }
@@ -79,7 +79,7 @@ pipeline {
                         ansible-playbook \
                             -e vault_username="$NETWORK_USERNAME" \
                             -e vault_password="$NETWORK_PASSWORD" \
-                            playbooks/configure.yml
+                            configure.yml
                     '''
                 }
             }
@@ -98,7 +98,7 @@ pipeline {
                         ansible-playbook \
                             -e vault_username="$NETWORK_USERNAME" \
                             -e vault_password="$NETWORK_PASSWORD" \
-                            playbooks/verify.yml
+                            verify.yml
                     '''
                 }
             }
