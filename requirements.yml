@@ -1,0 +1,5 @@
+# requirements.yml
+
+collections:
+  - name: ansible.netcommon
+  - name: cisco.ios
