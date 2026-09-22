@@ -1,0 +1,20 @@
+# playbooks/backup.yml
+
+---
+- name: Backup network devices
+  hosts: network_devices
+  gather_facts: false
+
+  tasks:
+
+    - name: Get running configuration
+      cisco.ios.ios_command:
+        commands:
+          - show running-config
+      register: running_config
+
+    - name: Save configuration
+      delegate_to: localhost
+      copy:
+        content: "{{ running_config.stdout[0] }}"
+        dest: "backup-{{ inventory_hostname }}.cfg"
