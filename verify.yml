@@ -1,0 +1,18 @@
+# playbooks/verify.yml
+
+---
+- name: Verify network configuration
+  hosts: network_devices
+  gather_facts: false
+
+  tasks:
+
+    - name: Check interface
+      cisco.ios.ios_command:
+        commands:
+          - show interfaces description
+      register: interface_output
+
+    - name: Display output
+      debug:
+        var: interface_output.stdout_lines

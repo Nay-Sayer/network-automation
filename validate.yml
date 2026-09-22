@@ -1,0 +1,21 @@
+# playbooks/validate.yml
+
+---
+- name: Validate devices
+  hosts: network_devices
+  gather_facts: false
+
+  tasks:
+
+    - name: Check device reachability
+      cisco.ios.ios_command:
+        commands:
+          - show version
+      register: version_output
+
+    - name: Confirm device responded
+      assert:
+        that:
+          - version_output.stdout | length > 0
+        fail_msg: "Device did not return output"
+        success_msg: "Device is reachable"
